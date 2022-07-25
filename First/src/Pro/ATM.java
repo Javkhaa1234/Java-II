@@ -4,15 +4,18 @@ package Pro;
 import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*;
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class ATM extends JFrame {
 	private static final long serialVersionUID = 1L;
-	int balance = 10;
+	int balance = 1000;
 	String[] inputSequence = new String[4];
 	String[] transactionHist = new String[100];
 	int inputSequenceIndex = 0;
 	int transactionIndex = 0;
 	boolean readyToEnter = false;
+	FileWriter fw;
 	
 	public ATM(){
 		super("ATM");
@@ -29,7 +32,7 @@ public class ATM extends JFrame {
 	}
 	
 	protected void buildApp(){
-		JLabel displayArea = new JLabel("<html> <br> Та сонголтоо оруулна уу <br> Одоогийн үлдэгдэл: \u00A3" + balance + "</html>");
+		JLabel displayArea = new JLabel("<html> <br> Та сонголтоо оруулна уу <br> Одоогийн үлдэгдэл: " + balance + "</html>");
 		displayArea.setOpaque(true);
 		displayArea.setBackground(Color.white);
 		displayArea.setPreferredSize(new Dimension(100, 100));
@@ -143,45 +146,69 @@ public class ATM extends JFrame {
 		
 		withDraw1.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent event) {
-				if(balance >= 5){
-					balance = balance - 5;
-					displayArea.setText("<html>\u00A35 Withrawn! <br><br>" + finishedTransaction() + "</html>");
-					readyToEnter = false;
-					System.out.println("User Has Withdrawn \u00A35");
-					updateTransactionHist("User Has Withdrawn \u00A35");
-				} else {
-					displayArea.setText("<html> Your Balance is below \u00A35. Unable to Withdraw!! <br><br>" 
-					+ finishedTransaction() + "</html>");
+				try {
+					fw=new FileWriter("/Users/tsogtbaatar/git/Java-II/First/src/Pro/one.txt");
+					if(balance >= 5){
+						balance = balance - 5;
+						fw.write("\u00A35 Withrawn!"+ finishedTransaction());
+						fw.close();
+						displayArea.setText("Амжилттай болохгүй гээд яахын гөлгөө");
+						readyToEnter = false;
+						updateTransactionHist("User Has Withdrawn \u00A35");
+					} else {
+						displayArea.setText("<html> Your Balance is below \u00A35. Unable to Withdraw!! <br><br>" 
+						+ finishedTransaction() + "</html>");
+					}
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
 				}
+				
 			}	
 		});
 		withDraw2.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent event) {
-				if(balance >= 10){
-					balance = balance - 10;
-					displayArea.setText("<html>\u00A310 Withrawn! <br><br>" + finishedTransaction() + "</html>");
-					readyToEnter = false;
-					System.out.println("User Has Withdrawn \u00A310");
-					updateTransactionHist("User Has Withdrawn \u00A310");
-				} else {
-					displayArea.setText("<html> Your Balance is below \u00A310. Unable to Withdraw!! <br><br>" 
-					+ finishedTransaction() + "</html>");
+				try {
+					fw=new FileWriter("/Users/tsogtbaatar/git/Java-II/First/src/Pro/one.txt");
+					if(balance >= 10){
+						balance = balance - 10;
+						fw.write("\u00A310 Withrawn!"+ finishedTransaction());
+						fw.close();
+						displayArea.setText("Амжилттай болохгүй гээд яахын гөлгөө");
+						readyToEnter = false;
+						updateTransactionHist("User Has Withdrawn \u00A310");
+					} else {
+						displayArea.setText("<html> Your Balance is below \u00A310. Unable to Withdraw!! <br><br>" 
+						+ finishedTransaction() + "</html>");
+					}
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
 				}
+				
 				
 			}	
 		});
 		withDraw3.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent event) {
-				if(balance >= 20){
-					balance = balance - 20;
-					displayArea.setText("<html>\u00A320 Withrawn! <br><br>" + finishedTransaction() + "</html>");
-					readyToEnter = false;
-					System.out.println("User Has Withdrawn \u00A320");
-					updateTransactionHist("User Has Withdrawn \u00A320");
-				} else {
-					displayArea.setText("<html> Your Balance is below \u00A320. Unable to Withdraw!! <br><br>" 
-					+ finishedTransaction() + "</html>");
+				try {
+					fw=new FileWriter("/Users/tsogtbaatar/git/Java-II/First/src/Pro/one.txt");
+					if(balance >= 20){
+						balance = balance - 20;
+						fw.write("\u00A320 Withrawn!"+ finishedTransaction());
+						fw.close();
+						displayArea.setText("Амжилттай болохгүй гээд яахын гөлгөө");
+						readyToEnter = false;
+						updateTransactionHist("User Has Withdrawn \u00A320");
+					} else {
+						displayArea.setText("<html> Your Balance is below \u00A320. Unable to Withdraw!! <br><br>" 
+						+ finishedTransaction() + "</html>");
+					}
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
 				}
+				
 			}	
 		});
 		// Quit Button - Return to login
@@ -257,40 +284,64 @@ public class ATM extends JFrame {
 		// Deposit Button - Primes program for a deposit, allows user to click enter deposit
 		deposit.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent event) {
-					displayArea.setText("<html> Deposit Selected! <br> Please input an amout below or equal to \u00A31000 and click enter! <br><br>" 
-					+ finishedTransaction() + "</html>" );
-					readyToEnter = true;
+				try {
+					fw=new FileWriter("/Users/tsogtbaatar/git/Java-II/First/src/Pro/one.txt");
+					fw.write("Deposit Selected!  Please input an amout below or equal to \\u00A31000 and click enter!" + finishedTransaction());
+					fw.close();
+					displayArea.setText("Амжилттай болохгүй гээд яахын гөлгөө");
+							readyToEnter = true;
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+					
 			}	
 		});
 		// Enter Button - adds input array val to balance
 		enter.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent event) {
-				if(readyToEnter == true){
-					if(Integer.parseInt(getInputSequence()) > 1000){
-						displayArea.setText("That input is greater than \u00A31000!");
-						clearInput();
-						inputDisplay.setText("Input Display: ");
-						readyToEnter = false;
-					} else if(Integer.parseInt(getInputSequence()) == 0 || getInputSequence().equals("0000")){
-						displayArea.setText("You have not entered a value!");
+				try {
+					fw=new FileWriter("/Users/tsogtbaatar/git/Java-II/First/src/Pro/one.txt");
+					if(readyToEnter == true){
+						if(Integer.parseInt(getInputSequence()) > 1000){
+							fw.write("That input is greater than \u00A31000!");
+							fw.close();
+							//displayArea.setText("That input is greater than \u00A31000!");
+							clearInput();
+							inputDisplay.setText("Input Display: ");
+							readyToEnter = false;
+						} else if(Integer.parseInt(getInputSequence()) == 0 || getInputSequence().equals("0000")){
+							fw.write("\"You have not entered a value!\"");
+							fw.close();
+							//displayArea.setText("You have not entered a value!");
+							clearInput();
+							inputDisplay.setText("Input Display: ");
+							readyToEnter = false;
+						} else {
+							updateBalance(Integer.parseInt(getInputSequence()));
+							fw.write("You have deposited \u00A3" + getInputSequence() + finishedTransaction());
+							fw.close();
+							//displayArea.setText("<html> You have deposited \u00A3" + getInputSequence() 
+							//+ "! <br><br>" + finishedTransaction() + "</html>");
+							System.out.println("User Has Deposited \u00A3" + getInputSequence());
+							updateTransactionHist("User Has Deposited \u00A3" + getInputSequence());
+						}
 						clearInput();
 						inputDisplay.setText("Input Display: ");
 						readyToEnter = false;
 					} else {
-						updateBalance(Integer.parseInt(getInputSequence()));
-						displayArea.setText("<html> You have deposited \u00A3" + getInputSequence() 
-						+ "! <br><br>" + finishedTransaction() + "</html>");
-						System.out.println("User Has Deposited \u00A3" + getInputSequence());
-						updateTransactionHist("User Has Deposited \u00A3" + getInputSequence());
+						fw.write("You have not yet chosen an action!"+finishedTransaction());
+						fw.close();
+						displayArea.setText("Амжилттай болохгүй гээд яахын гөлгөө");
+						//displayArea.setText("<html> You have not yet chosen an action! <br><br>" + finishedTransaction() + "</html>");
+						clearInput();
+						inputDisplay.setText("Input Display: ");
 					}
-					clearInput();
-					inputDisplay.setText("Input Display: ");
-					readyToEnter = false;
-				} else {
-					displayArea.setText("<html> You have not yet chosen an action! <br><br>" + finishedTransaction() + "</html>");
-					clearInput();
-					inputDisplay.setText("Input Display: ");
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
 				}
+				
 				
 			}	
 		});	

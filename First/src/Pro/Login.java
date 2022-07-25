@@ -3,6 +3,8 @@ package Pro;
 import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*;
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class Login extends JFrame {
 
@@ -59,9 +61,10 @@ public class Login extends JFrame {
 				char[] pinGuess = pinText.getPassword();
 				String pinString = new String(pinGuess);
 				if(pinString.equals(pin)){
-					JOptionPane.showMessageDialog(null, "Нууц үг амжилттай! Нэвтэрч байна...");
+					
 					dispose();
 					new ATM();
+					
 				} else{
 					if(attempts != 1){
 						attempts--;
@@ -79,7 +82,6 @@ public class Login extends JFrame {
 				char[] pinGuess = pinText.getPassword();
 				String pinString = new String(pinGuess);
 				if(pinString.equals(pin)){
-					JOptionPane.showMessageDialog(null, "That pin is correct! Opening Account...");
 					dispose();
 					new ATM();
 				} else{
