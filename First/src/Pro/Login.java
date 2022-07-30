@@ -69,9 +69,9 @@ public class Login extends JFrame {
 					if(attempts != 1){
 						attempts--;
 						JOptionPane.showMessageDialog(null, "Нууц үг буруу! \n" + attempts 
-						+ " attempts remaining!");
+						+ " оролдлого үлдлээ!");
 					} else {
-						JOptionPane.showMessageDialog(null, "No Attempts remaining! \n Closing Program");
+						JOptionPane.showMessageDialog(null, "Оролдлого дууслаа! \\n Програмаас гарч байна");
 						System.exit(0);
 					}
 				}
@@ -87,10 +87,10 @@ public class Login extends JFrame {
 				} else{
 					if(attempts != 1){
 						attempts--;
-						JOptionPane.showMessageDialog(null, "That pin is incorrect! \n" + attempts 
-						+ " attempts remaining!");
+						JOptionPane.showMessageDialog(null, "Нууц үг буруу! \n" + attempts 
+						+ " оролдлого үлдлээ!");
 					} else {
-						JOptionPane.showMessageDialog(null, "No Attempts remaining! \n Closing Program");
+						JOptionPane.showMessageDialog(null, "Оролдлого дууслаа! \n Програмаас гарч байна");
 						System.exit(0);
 					}
 				}

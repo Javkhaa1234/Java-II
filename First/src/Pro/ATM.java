@@ -147,19 +147,23 @@ public class ATM extends JFrame {
 		withDraw1.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent event) {
 				try {
+					Thread.sleep(100);
 					fw=new FileWriter("/Users/tsogtbaatar/git/Java-II/First/src/Pro/one.txt");
 					if(balance >= 5){
 						balance = balance - 5;
 						fw.write("\u00A35 Withrawn!"+ finishedTransaction());
 						fw.close();
-						displayArea.setText("Амжилттай болохгүй гээд яахын гөлгөө");
+						displayArea.setText("Амжилттай");
 						readyToEnter = false;
-						updateTransactionHist("User Has Withdrawn \u00A35");
+						updateTransactionHist("Хэрэглэгч таталт хийлээ \u00A35");
 					} else {
 						displayArea.setText("<html> Your Balance is below \u00A35. Unable to Withdraw!! <br><br>" 
 						+ finishedTransaction() + "</html>");
 					}
 				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
@@ -174,7 +178,7 @@ public class ATM extends JFrame {
 						balance = balance - 10;
 						fw.write("\u00A310 Withrawn!"+ finishedTransaction());
 						fw.close();
-						displayArea.setText("Амжилттай болохгүй гээд яахын гөлгөө");
+						displayArea.setText("Амжилттай");
 						readyToEnter = false;
 						updateTransactionHist("User Has Withdrawn \u00A310");
 					} else {
@@ -192,12 +196,13 @@ public class ATM extends JFrame {
 		withDraw3.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent event) {
 				try {
+					Thread.sleep(100);
 					fw=new FileWriter("/Users/tsogtbaatar/git/Java-II/First/src/Pro/one.txt");
 					if(balance >= 20){
 						balance = balance - 20;
 						fw.write("\u00A320 Withrawn!"+ finishedTransaction());
 						fw.close();
-						displayArea.setText("Амжилттай болохгүй гээд яахын гөлгөө");
+						displayArea.setText("Амжилттай");
 						readyToEnter = false;
 						updateTransactionHist("User Has Withdrawn \u00A320");
 					} else {
@@ -205,6 +210,9 @@ public class ATM extends JFrame {
 						+ finishedTransaction() + "</html>");
 					}
 				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
@@ -288,7 +296,7 @@ public class ATM extends JFrame {
 					fw=new FileWriter("/Users/tsogtbaatar/git/Java-II/First/src/Pro/one.txt");
 					fw.write("Deposit Selected!  Please input an amout below or equal to \\u00A31000 and click enter!" + finishedTransaction());
 					fw.close();
-					displayArea.setText("Амжилттай болохгүй гээд яахын гөлгөө");
+					displayArea.setText("Амжилттай");
 							readyToEnter = true;
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
@@ -301,6 +309,7 @@ public class ATM extends JFrame {
 		enter.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent event) {
 				try {
+					Thread.sleep(100);
 					fw=new FileWriter("/Users/tsogtbaatar/git/Java-II/First/src/Pro/one.txt");
 					if(readyToEnter == true){
 						if(Integer.parseInt(getInputSequence()) > 1000){
@@ -332,12 +341,15 @@ public class ATM extends JFrame {
 					} else {
 						fw.write("You have not yet chosen an action!"+finishedTransaction());
 						fw.close();
-						displayArea.setText("Амжилттай болохгүй гээд яахын гөлгөө");
+						displayArea.setText("Амжилттай");
 						//displayArea.setText("<html> You have not yet chosen an action! <br><br>" + finishedTransaction() + "</html>");
 						clearInput();
 						inputDisplay.setText("Input Display: ");
 					}
 				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}

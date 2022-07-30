@@ -1,1 +1,1 @@
-You have not yet chosen an action!Instruction Area: <br> Please select a function from the buttons below <br> Current Balance: £1000
+That input is greater than £1000!
